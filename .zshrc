@@ -2,7 +2,7 @@
 # Iniciar o Oh-My-Zsh
 # ========================
 ZSH=$HOME/.oh-my-zsh
-ZSH_THEME="robbyrussell"  # Tema visual do prompt (pode trocar para "robbyrussell" ou outro)
+ZSH_THEME="robbyrussell" 
 plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
@@ -19,7 +19,7 @@ source $ZSH/oh-my-zsh.sh
 # ========================
 # Aliases 
 # ========================
-alias ll='ls -lah'            # ls com formato de listagem longa
+alias ll='ls -lah'             # ls com formato de listagem longa
 alias gs='git status'          # git status
 alias gc='git commit'          # git commit
 alias gco='git checkout'       # git checkout
@@ -40,9 +40,8 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=yellow"  # Cor da sugestão
 
 
 # ========================
-# Historial de Comandos
+# Historico de Comandos
 # ========================
-# Configurações do histórico
 HISTSIZE=1000             # Número de comandos no histórico
 SAVEHIST=1000             # Número de comandos a salvar no arquivo de histórico
 HISTFILE=~/.zsh_history   # Local do arquivo de histórico
@@ -52,14 +51,15 @@ setopt hist_find_no_dups  # Ao buscar no histórico, não exibe duplicados
 
 
 # ========================
-# Melhorias para o Zsh
+# Melhorias
 # ========================
 # Evitar erro de "command not found" para comandos inválidos
 setopt correct_all        # Corrige automaticamente comandos errados
 
 
-
+# ========================
 # Funções
+# ========================
 df-h () {
   # Exibe o espaço em disco de maneira amigável com ícones, cores e formatação aprimorada
   df -h --total | awk '
@@ -68,17 +68,17 @@ df-h () {
       print "\033[1;34m" $0 "\033[0m"
     }
     NR>1 {
-      # Define cores com base na porcentagem de uso
+      # Define as cores com base na porcentagem de uso
       use_percent = substr($5, 1, length($5)-1) + 0
       icon = (use_percent >= 90 ? "💥" : use_percent >= 50 ? "⚠️" : "✅")
 
       # Formata as linhas com ícones e cores
       if (use_percent >= 90) {
-        print "\033[1;31m" icon " " $0 "\033[0m"  # Vermelho para uso crítico
+        print "\033[1;31m" icon " " $0 "\033[0m"  # Vermelho crítico
       } else if (use_percent >= 50) {
-        print "\033[1;33m" icon " " $0 "\033[0m"  # Amarelo para uso médio
+        print "\033[1;33m" icon " " $0 "\033[0m"  # Amarelo médio
       } else {
-        print "\033[1;32m" icon " " $0 "\033[0m"  # Verde para uso baixo
+        print "\033[1;32m" icon " " $0 "\033[0m"  # Verde baixo
       }
     }
   '
@@ -89,7 +89,6 @@ ram-status () {
   # Exibe as informações de memória em uma tabela vertical
   free -h | awk '
     NR==1 {
-      # Cabeçalho com estilo
       print "\033[1;34m" "--------------------------------------------------"
       print "               MEMORY USAGE REPORT               "
       print "--------------------------------------------------\033[0m"
